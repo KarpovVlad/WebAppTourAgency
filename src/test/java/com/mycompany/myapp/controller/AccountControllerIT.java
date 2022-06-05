@@ -1,6 +1,6 @@
 package com.mycompany.myapp.controller;
 
-import static com.mycompany.myapp.controller.AccountResourceIT.TEST_USER_LOGIN;
+import static com.mycompany.myapp.controller.AccountControllerIT.TEST_USER_LOGIN;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -30,12 +30,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Integration tests for the {@link AccountResource} REST controller.
+ * Integration tests for the {@link AccountController} REST controller.
  */
 @AutoConfigureMockMvc
 @WithMockUser(value = TEST_USER_LOGIN)
 @IntegrationTest
-class AccountResourceIT {
+class AccountControllerIT {
 
     static final String TEST_USER_LOGIN = "test";
 

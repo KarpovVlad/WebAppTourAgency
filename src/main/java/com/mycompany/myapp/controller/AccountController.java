@@ -1,34 +1,33 @@
 package com.mycompany.myapp.controller;
 
+import com.mycompany.myapp.domain.dto.AdminUserDto;
+import com.mycompany.myapp.domain.dto.KeyAndPasswordDto;
+import com.mycompany.myapp.domain.dto.ManagedUserDto;
+import com.mycompany.myapp.domain.dto.PasswordChangeDTO;
+import com.mycompany.myapp.domain.entity.User;
 import com.mycompany.myapp.exceptions.EmailAlreadyUsedException;
 import com.mycompany.myapp.exceptions.InvalidPasswordException;
 import com.mycompany.myapp.exceptions.LoginAlreadyUsedException;
-import com.mycompany.myapp.domain.dto.KeyAndPasswordDto;
-import com.mycompany.myapp.domain.dto.ManagedUserDto;
-import com.mycompany.myapp.domain.entity.User;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.MailService;
 import com.mycompany.myapp.service.UserService;
-import com.mycompany.myapp.domain.dto.AdminUserDto;
-import com.mycompany.myapp.domain.dto.PasswordChangeDTO;
-import com.mycompany.myapp.web.rest.errors.*;
-
-import java.util.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.Optional;
+
 /**
  * REST controller for managing the current user's account.
  */
 @RestController
 @RequestMapping("/api")
-public class AccountResource {
+public class AccountController {
 
     private static class AccountResourceException extends RuntimeException {
 
@@ -37,7 +36,7 @@ public class AccountResource {
         }
     }
 
-    private final Logger log = LoggerFactory.getLogger(AccountResource.class);
+    private final Logger log = LoggerFactory.getLogger(AccountController.class);
 
     private final UserRepository userRepository;
 
@@ -45,7 +44,7 @@ public class AccountResource {
 
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
+    public AccountController(UserRepository userRepository, UserService userService, MailService mailService) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
@@ -55,7 +54,7 @@ public class AccountResource {
      * {@code POST  /register} : register the user.
      *
      * @param managedUserDto the managed user View Model.
-     * @throws InvalidPasswordException {@code 400 (Bad Request)} if the password is incorrect.
+     * @throws InvalidPasswordException  {@code 400 (Bad Request)} if the password is incorrect.
      * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
      * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already used.
      */
@@ -114,7 +113,7 @@ public class AccountResource {
      *
      * @param userDTO the current user information.
      * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
-     * @throws RuntimeException {@code 500 (Internal Server Error)} if the user login wasn't found.
+     * @throws RuntimeException          {@code 500 (Internal Server Error)} if the user login wasn't found.
      */
     @PostMapping("/account")
     public void saveAccount(@Valid @RequestBody AdminUserDto userDTO) {
@@ -174,7 +173,7 @@ public class AccountResource {
      *
      * @param keyAndPassword the generated key and the new password.
      * @throws InvalidPasswordException {@code 400 (Bad Request)} if the password is incorrect.
-     * @throws RuntimeException {@code 500 (Internal Server Error)} if the password could not be reset.
+     * @throws RuntimeException         {@code 500 (Internal Server Error)} if the password could not be reset.
      */
     @PostMapping(path = "/account/reset-password/finish")
     public void finishPasswordReset(@RequestBody KeyAndPasswordDto keyAndPassword) {

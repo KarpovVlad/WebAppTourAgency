@@ -22,12 +22,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Integration tests for the {@link TourCompanyResource} REST controller.
+ * Integration tests for the {@link TourCompanyController} REST controller.
  */
 @IntegrationTest
 @AutoConfigureMockMvc
 @WithMockUser
-class TourCompanyResourceIT {
+class TourCompanyControllerIT {
 
     private static final String DEFAULT_TOUR_COMPANY_NAME = "AAAAAAAAAA";
     private static final String UPDATED_TOUR_COMPANY_NAME = "BBBBBBBBBB";
