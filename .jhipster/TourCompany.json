@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20220601133018",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "tour_company",
+  "fields": [
+    {
+      "fieldName": "tourCompanyName",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TourCompany",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "tour",
+      "otherEntityRelationshipName": "tourCompany",
+      "relationshipName": "tour",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20220601133019",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "category",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "excursion",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "relax",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "shopping",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Category",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "tour",
+      "otherEntityRelationshipName": "category",
+      "ownerSide": false,
+      "relationshipName": "tour",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

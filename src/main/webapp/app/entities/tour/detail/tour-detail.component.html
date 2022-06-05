@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="tour">
+      <h2 data-cy="tourDetailsHeading"><span>Tour</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ tour.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ tour.name }}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+          <span>{{ tour.description }}</span>
+        </dd>
+        <dt><span>Image</span></dt>
+        <dd>
+          <div *ngIf="tour.image">
+            <a (click)="openFile(tour.image, tour.imageContentType)">
+              <img [src]="'data:' + tour.imageContentType + ';base64,' + tour.image" style="max-width: 100%" alt="tour image" />
+            </a>
+            {{ tour.imageContentType }}, {{ byteSize(tour.image) }}
+          </div>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+          <span>{{ tour.price }}</span>
+        </dd>
+        <dt><span>Persons</span></dt>
+        <dd>
+          <span>{{ tour.persons }}</span>
+        </dd>
+        <dt><span>Hot</span></dt>
+        <dd>
+          <span>{{ tour.hot }}</span>
+        </dd>
+        <dt><span>Discoint</span></dt>
+        <dd>
+          <span>{{ tour.discoint }}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+          <span *ngFor="let category of tour.categories; let last = last">
+            <a [routerLink]="['/category', category?.id, 'view']">{{ category.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span>Tour Company</span></dt>
+        <dd>
+          <div *ngIf="tour.tourCompany">
+            <a [routerLink]="['/tour-company', tour.tourCompany?.id, 'view']">{{ tour.tourCompany?.tourCompanyName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button  *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button" [routerLink]="['/tour', tour.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

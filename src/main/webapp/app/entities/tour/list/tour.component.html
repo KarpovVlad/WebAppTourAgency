@@ -1,0 +1,111 @@
+<head>
+  <script src="/Users/vladkarpov/TableFilter/tablefilter.js"></script>
+</head>
+<div>
+  <h2 id="page-heading" data-cy="TourHeading">
+    <span>Tours</span>
+
+    <div
+      class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+        <button
+          *jhiHasAnyAuthority="'ROLE_ADMIN'"
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-tour"
+          [routerLink]="['/tour/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span> Create a new Tour </span>
+        </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="tours?.length === 0">
+    <span>No tours found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="tours && tours.length > 0">
+
+    <table id="filterthis" class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Name</span></th>
+          <th scope="col"><span>Description</span></th>
+          <th scope="col"><span>Image</span></th>
+          <th scope="col"><span>Price</span></th>
+          <th scope="col"><span>Persons</span></th>
+          <th scope="col"><span>Hot</span></th>
+          <th scope="col"><span>Discoint</span></th>
+          <th scope="col"><span>Category</span></th>
+          <th scope="col"><span>Tour Company</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tour of tours; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/tour', tour.id, 'view']">{{ tour.id }}</a>
+          </td>
+          <td>{{ tour.name }}</td>
+          <td>{{ tour.description }}</td>
+          <td>
+            <a *ngIf="tour.image" (click)="openFile(tour.image, tour.imageContentType)">
+              <img [src]="'data:' + tour.imageContentType + ';base64,' + tour.image" style="max-height: 30px" alt="tour image" />
+            </a>
+            <span *ngIf="tour.image">{{ tour.imageContentType }}, {{ byteSize(tour.image) }}</span>
+          </td>
+          <td>{{ tour.price }}</td>
+          <td>{{ tour.persons }}</td>
+          <td>{{ tour.hot }}</td>
+          <td>{{ tour.discoint }}</td>
+          <td>
+            <span *ngFor="let category of tour.categories; let last = last">
+              <a class="form-control-static" [routerLink]="['/category', category.id, 'view']">{{ category.name }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td>
+            <div *ngIf="tour.tourCompany">
+              <a [routerLink]="['/tour-company', tour.tourCompany?.id, 'view']">{{ tour.tourCompany?.tourCompanyName }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit" [routerLink]="['/tour', tour.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button  *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_MANAGER']"
+                type="submit" [routerLink]="['/tour', tour.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button  *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit" (click)="delete(tour)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+
+              <button>
+                <fa-icon></fa-icon>
+                <span class="d-none d-md-inline">Make booking</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+{
+  "applications": "*",
+  "changelogDate": "20220601133020",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "tour",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "persons",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "hot",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "discoint",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Tour",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "category",
+      "otherEntityRelationshipName": "tour",
+      "ownerSide": true,
+      "relationshipName": "category",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "tourCompanyName",
+      "otherEntityName": "tourCompany",
+      "otherEntityRelationshipName": "tour",
+      "relationshipName": "tourCompany",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}
