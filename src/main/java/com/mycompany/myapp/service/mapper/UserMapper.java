@@ -1,9 +1,9 @@
 package com.mycompany.myapp.service.mapper;
 
-import com.mycompany.myapp.domain.Authority;
-import com.mycompany.myapp.domain.User;
-import com.mycompany.myapp.service.dto.AdminUserDTO;
-import com.mycompany.myapp.service.dto.UserDTO;
+import com.mycompany.myapp.domain.entity.Authority;
+import com.mycompany.myapp.domain.entity.User;
+import com.mycompany.myapp.domain.dto.AdminUserDto;
+import com.mycompany.myapp.domain.dto.UserDTO;
 import java.util.*;
 import java.util.stream.Collectors;
 import org.mapstruct.BeanMapping;
@@ -28,19 +28,19 @@ public class UserMapper {
         return new UserDTO(user);
     }
 
-    public List<AdminUserDTO> usersToAdminUserDTOs(List<User> users) {
+    public List<AdminUserDto> usersToAdminUserDTOs(List<User> users) {
         return users.stream().filter(Objects::nonNull).map(this::userToAdminUserDTO).collect(Collectors.toList());
     }
 
-    public AdminUserDTO userToAdminUserDTO(User user) {
-        return new AdminUserDTO(user);
+    public AdminUserDto userToAdminUserDTO(User user) {
+        return new AdminUserDto(user);
     }
 
-    public List<User> userDTOsToUsers(List<AdminUserDTO> userDTOs) {
+    public List<User> userDTOsToUsers(List<AdminUserDto> userDTOs) {
         return userDTOs.stream().filter(Objects::nonNull).map(this::userDTOToUser).collect(Collectors.toList());
     }
 
-    public User userDTOToUser(AdminUserDTO userDTO) {
+    public User userDTOToUser(AdminUserDto userDTO) {
         if (userDTO == null) {
             return null;
         } else {

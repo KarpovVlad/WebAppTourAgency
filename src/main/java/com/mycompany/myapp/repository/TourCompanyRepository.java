@@ -1,6 +1,6 @@
 package com.mycompany.myapp.repository;
 
-import com.mycompany.myapp.domain.TourCompany;
+import com.mycompany.myapp.domain.entity.TourCompany;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 

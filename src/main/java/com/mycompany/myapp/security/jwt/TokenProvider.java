@@ -1,6 +1,6 @@
 package com.mycompany.myapp.security.jwt;
 
-import com.mycompany.myapp.management.SecurityMetersService;
+import com.mycompany.myapp.service.SecurityMetersService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

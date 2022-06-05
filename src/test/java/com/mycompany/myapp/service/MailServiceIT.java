@@ -6,7 +6,7 @@ import static org.mockito.Mockito.*;
 
 import com.mycompany.myapp.IntegrationTest;
 import com.mycompany.myapp.config.Constants;
-import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.domain.entity.User;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;

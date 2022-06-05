@@ -2,9 +2,9 @@ package com.mycompany.myapp.service.mapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.mycompany.myapp.domain.User;
-import com.mycompany.myapp.service.dto.AdminUserDTO;
-import com.mycompany.myapp.service.dto.UserDTO;
+import com.mycompany.myapp.domain.entity.User;
+import com.mycompany.myapp.domain.dto.AdminUserDto;
+import com.mycompany.myapp.domain.dto.UserDTO;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -23,7 +23,7 @@ class UserMapperTest {
 
     private UserMapper userMapper;
     private User user;
-    private AdminUserDTO userDto;
+    private AdminUserDto userDto;
 
     @BeforeEach
     public void init() {
@@ -38,7 +38,7 @@ class UserMapperTest {
         user.setImageUrl("image_url");
         user.setLangKey("en");
 
-        userDto = new AdminUserDTO(user);
+        userDto = new AdminUserDto(user);
     }
 
     @Test
@@ -54,7 +54,7 @@ class UserMapperTest {
 
     @Test
     void userDTOsToUsersShouldMapOnlyNonNullUsers() {
-        List<AdminUserDTO> usersDto = new ArrayList<>();
+        List<AdminUserDto> usersDto = new ArrayList<>();
         usersDto.add(userDto);
         usersDto.add(null);
 
@@ -69,7 +69,7 @@ class UserMapperTest {
         authoritiesAsString.add("ADMIN");
         userDto.setAuthorities(authoritiesAsString);
 
-        List<AdminUserDTO> usersDto = new ArrayList<>();
+        List<AdminUserDto> usersDto = new ArrayList<>();
         usersDto.add(userDto);
 
         List<User> users = userMapper.userDTOsToUsers(usersDto);
@@ -84,7 +84,7 @@ class UserMapperTest {
     void userDTOsToUsersMapWithNullAuthoritiesStringShouldReturnUserWithEmptyAuthorities() {
         userDto.setAuthorities(null);
 
-        List<AdminUserDTO> usersDto = new ArrayList<>();
+        List<AdminUserDto> usersDto = new ArrayList<>();
         usersDto.add(userDto);
 
         List<User> users = userMapper.userDTOsToUsers(usersDto);

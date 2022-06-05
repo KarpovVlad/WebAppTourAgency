@@ -1,6 +1,8 @@
 package com.mycompany.myapp.config;
 
 import java.time.Duration;
+
+import com.mycompany.myapp.domain.entity.*;
 import org.ehcache.config.builders.*;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.hibernate.cache.jcache.ConfigSettings;
@@ -45,15 +47,15 @@ public class CacheConfiguration {
         return cm -> {
             createCache(cm, com.mycompany.myapp.repository.UserRepository.USERS_BY_LOGIN_CACHE);
             createCache(cm, com.mycompany.myapp.repository.UserRepository.USERS_BY_EMAIL_CACHE);
-            createCache(cm, com.mycompany.myapp.domain.User.class.getName());
-            createCache(cm, com.mycompany.myapp.domain.Authority.class.getName());
-            createCache(cm, com.mycompany.myapp.domain.User.class.getName() + ".authorities");
-            createCache(cm, com.mycompany.myapp.domain.TourCompany.class.getName());
-            createCache(cm, com.mycompany.myapp.domain.TourCompany.class.getName() + ".tours");
-            createCache(cm, com.mycompany.myapp.domain.Category.class.getName());
-            createCache(cm, com.mycompany.myapp.domain.Category.class.getName() + ".tours");
-            createCache(cm, com.mycompany.myapp.domain.Tour.class.getName());
-            createCache(cm, com.mycompany.myapp.domain.Tour.class.getName() + ".categories");
+            createCache(cm, User.class.getName());
+            createCache(cm, Authority.class.getName());
+            createCache(cm, User.class.getName() + ".authorities");
+            createCache(cm, TourCompany.class.getName());
+            createCache(cm, TourCompany.class.getName() + ".tours");
+            createCache(cm, Category.class.getName());
+            createCache(cm, Category.class.getName() + ".tours");
+            createCache(cm, Tour.class.getName());
+            createCache(cm, Tour.class.getName() + ".categories");
             // jhipster-needle-ehcache-add-entry
         };
     }

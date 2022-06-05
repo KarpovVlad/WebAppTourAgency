@@ -2,7 +2,7 @@ package com.mycompany.myapp.security.jwt;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.mycompany.myapp.management.SecurityMetersService;
+import com.mycompany.myapp.service.SecurityMetersService;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

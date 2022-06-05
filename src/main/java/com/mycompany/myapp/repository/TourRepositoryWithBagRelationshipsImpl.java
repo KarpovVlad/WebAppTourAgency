@@ -1,6 +1,6 @@
 package com.mycompany.myapp.repository;
 
-import com.mycompany.myapp.domain.Tour;
+import com.mycompany.myapp.domain.entity.Tour;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

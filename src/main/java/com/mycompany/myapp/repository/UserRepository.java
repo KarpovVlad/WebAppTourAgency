@@ -1,6 +1,6 @@
 package com.mycompany.myapp.repository;
 
-import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.domain.entity.User;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
