@@ -163,7 +163,7 @@ public class TourController {
      */
     @GetMapping(value = "/tours", consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<Tour> getAllTours(@RequestBody TourCriteria criteria) {
-        log.debug("REST request to get all Tours: priceFrom - {}", criteria.getPriceFrom());
+        log.debug("REST request to get all Tours: priceFrom");
         return tourService.getAll(criteria);
     }
 
