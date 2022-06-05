@@ -1,21 +1,25 @@
 package com.mycompany.myapp.controller;
 
+import com.mycompany.myapp.domain.dto.TourCriteria;
 import com.mycompany.myapp.domain.entity.Tour;
-import com.mycompany.myapp.repository.TourRepository;
 import com.mycompany.myapp.exceptions.BadRequestAlertException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import com.mycompany.myapp.repository.TourRepository;
+import com.mycompany.myapp.service.TourService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * REST controller for managing {@link Tour}.
@@ -29,13 +33,18 @@ public class TourController {
 
     private static final String ENTITY_NAME = "tour";
 
-    @Value("${jhipster.clientApp.name}")
-    private String applicationName;
+    private final String applicationName;
 
     private final TourRepository tourRepository;
 
-    public TourController(TourRepository tourRepository) {
+    private final TourService tourService;
+
+    public TourController(@Value("${jhipster.clientApp.name}") String applicationName,
+                          TourRepository tourRepository,
+                          TourService tourService) {
+        this.applicationName = applicationName;
         this.tourRepository = tourRepository;
+        this.tourService = tourService;
     }
 
     /**
@@ -61,16 +70,14 @@ public class TourController {
     /**
      * {@code PUT  /tours/:id} : Updates an existing tour.
      *
-     * @param id the id of the tour to save.
+     * @param id   the id of the tour to save.
      * @param tour the tour to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated tour,
      * or with status {@code 400 (Bad Request)} if the tour is not valid,
      * or with status {@code 500 (Internal Server Error)} if the tour couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/tours/{id}")
-    public ResponseEntity<Tour> updateTour(@PathVariable(value = "id", required = false) final Long id, @RequestBody Tour tour)
-        throws URISyntaxException {
+    public ResponseEntity<Tour> updateTour(@PathVariable(value = "id", required = false) final Long id, @RequestBody Tour tour) {
         log.debug("REST request to update Tour : {}, {}", id, tour);
         if (tour.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -93,21 +100,16 @@ public class TourController {
     /**
      * {@code PATCH  /tours/:id} : Partial updates given fields of an existing tour, field will ignore if it is null
      *
-     * @param id the id of the tour to save.
+     * @param id   the id of the tour to save.
      * @param tour the tour to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated tour,
      * or with status {@code 400 (Bad Request)} if the tour is not valid,
      * or with status {@code 404 (Not Found)} if the tour is not found,
      * or with status {@code 500 (Internal Server Error)} if the tour couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PatchMapping(value = "/tours/{id}", consumes = { "application/json", "application/merge-patch+json" })
-    public ResponseEntity<Tour> partialUpdateTour(@PathVariable(value = "id", required = false) final Long id, @RequestBody Tour tour)
-        throws URISyntaxException {
+    @PatchMapping(value = "/tours/{id}", consumes = {"application/json", "application/merge-patch+json"})
+    public ResponseEntity<Tour> partialUpdateTour(@PathVariable final Long id, @RequestBody Tour tour) {
         log.debug("REST request to partial update Tour partially : {}, {}", id, tour);
-        if (tour.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
         if (!Objects.equals(id, tour.getId())) {
             throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
         }
@@ -159,10 +161,10 @@ public class TourController {
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tours in body.
      */
-    @GetMapping("/tours")
-    public List<Tour> getAllTours() {
-        log.debug("REST request to get all Tours");
-        return tourRepository.findAllWithEagerRelationships();
+    @GetMapping(value = "/tours", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<Tour> getAllTours(@RequestBody TourCriteria criteria) {
+        log.debug("REST request to get all Tours: priceFrom - {}", criteria.getPriceFrom());
+        return tourService.getAll(criteria);
     }
 
     /**
@@ -174,7 +176,7 @@ public class TourController {
     @GetMapping("/tours/{id}")
     public ResponseEntity<Tour> getTour(@PathVariable Long id) {
         log.debug("REST request to get Tour : {}", id);
-        Optional<Tour> tour = tourRepository.findOneWithEagerRelationships(id);
+        Optional<Tour> tour = tourRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(tour);
     }
 

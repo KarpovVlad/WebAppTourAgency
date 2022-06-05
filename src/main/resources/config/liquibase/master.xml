@@ -18,8 +18,6 @@
     <include file="config/liquibase/changelog/20220601133018_added_entity_TourCompany.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220601133019_added_entity_Category.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220601133020_added_entity_Tour.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20220601133020_added_entity_constraints_Tour.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
-    <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20220606090000_mock_data.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

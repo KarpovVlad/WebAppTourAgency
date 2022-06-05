@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20220606090000-1" author="jhipster">
+        <loadData
+            file="config/liquibase/fake-data/category.csv"
+            separator=";"
+            tableName="category"
+            usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="excursion" type="boolean"/>
+            <column name="relax" type="boolean"/>
+            <column name="shopping" type="boolean"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20220606090000-2" author="jhipster">
+        <loadData
+            file="config/liquibase/fake-data/tour_company.csv"
+            separator=";"
+            tableName="tour_company"
+            usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20220606090000-3" author="jhipster">
+            <loadData
+                file="config/liquibase/fake-data/tour.csv"
+                separator=";"
+                tableName="tour"
+                usePreparedStatements="true">
+                <column name="id" type="bigint"/>
+                <column name="name" type="varchar(255)"/>
+                <column name="description" type="varchar(255)"/>
+                <column name="image" type="blob"/>
+                <column name="image_content_type" type="varchar(255)"/>
+                <column name="price" type="decimal(21,2)"/>
+                <column name="persons" type="integer"/>
+                <column name="hot" type="boolean"/>
+                <column name="discoint" type="integer"/>
+                <column name="tour_company_id" type="bigint"/>
+            </loadData>
+    </changeSet>
+</databaseChangeLog>
