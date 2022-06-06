@@ -82,14 +82,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
-    @ManyToMany
-    @JoinTable(
-        name = "user_tour",
-        joinColumns = {@JoinColumn(name = "user_id")},
-        inverseJoinColumns = {@JoinColumn(name = "tour_id")}
-    )
-    private List<Tour> bookedTours = new ArrayList<>();
-
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -100,14 +92,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
-
-    public List<Tour> getBookedTours() {
-        return bookedTours;
-    }
-
-    public void setBookedTours(List<Tour> bookedTours) {
-        this.bookedTours = bookedTours;
-    }
 
     public Long getId() {
         return id;

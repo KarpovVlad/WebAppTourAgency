@@ -48,6 +48,6 @@ public class TourCompanyService {
     private TourCompany getById(Long id) {
         return companyRepository.findById(id)
             .orElseThrow(() -> new BadRequestAlertException("Tour company with id: " + id + " not found",
-                TourCompany.class.getSimpleName(), "idinvalid"));
+                TourCompany.class.getSimpleName(), "idnotfound"));
     }
 }

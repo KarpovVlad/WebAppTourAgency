@@ -3,7 +3,6 @@ package com.mycompany.myapp.service;
 import com.mycompany.myapp.domain.dto.TourCriteria;
 import com.mycompany.myapp.domain.dto.TourDto;
 import com.mycompany.myapp.domain.entity.Tour;
-import com.mycompany.myapp.domain.entity.User;
 import com.mycompany.myapp.exceptions.BadRequestAlertException;
 import com.mycompany.myapp.repository.TourCustomRepository;
 import com.mycompany.myapp.service.mapper.TourMapper;
@@ -18,13 +17,14 @@ import java.util.stream.Collectors;
 public class TourService {
 
     private final TourCustomRepository tourRepository;
-    private final UserService userService;
     private final TourMapper tourMapper;
+    private final TourBookingService tourBookingService;
 
-    public TourService(TourCustomRepository tourRepository, UserService userService, TourMapper tourMapper) {
+    public TourService(TourCustomRepository tourRepository, TourMapper tourMapper,
+                       TourBookingService tourBookingService) {
         this.tourRepository = tourRepository;
-        this.userService = userService;
         this.tourMapper = tourMapper;
+        this.tourBookingService = tourBookingService;
     }
 
     public TourDto getDtoById(Long id) {
@@ -41,15 +41,14 @@ public class TourService {
     }
 
     public void book(Long id) {
-        User currentUser = userService.getCurrentUser();
-        currentUser.getBookedTours().add(getById(id));
-        userService.save(currentUser);
+        Tour tour = getById(id);
+        tourBookingService.createBooking(tour);
     }
 
     private Tour getById(Long id) {
         return tourRepository.findById(id)
             .orElseThrow(() -> new BadRequestAlertException("Tour with id: " + id + " not found",
-                Tour.class.getSimpleName(), "idinvalid"));
+                Tour.class.getSimpleName(), "idnotfound"));
     }
 
     private Sort getSorting(TourCriteria criteria) {

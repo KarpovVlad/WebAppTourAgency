@@ -48,6 +48,7 @@ spring:
       ddl-auto: validate
   liquibase:
     contexts: dev
+    enabled: true
   mail:
     host: localhost
     port: 25
