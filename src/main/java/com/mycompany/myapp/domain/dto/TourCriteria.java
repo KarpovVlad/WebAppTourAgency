@@ -12,6 +12,8 @@ public class TourCriteria {
 
     private Integer personsTo;
 
+    private Boolean hotFirst;
+
     // todo: replace booleans with Enum
     private Boolean isExcursion;
 
@@ -19,59 +21,69 @@ public class TourCriteria {
 
     private Boolean isShopping;
 
+
+
     public BigDecimal getPriceFrom() {
-        return this.priceFrom;
-    }
-
-    public BigDecimal getPriceTo() {
-        return this.priceTo;
-    }
-
-    public Integer getPersonsFrom() {
-        return this.personsFrom;
-    }
-
-    public Integer getPersonsTo() {
-        return this.personsTo;
-    }
-
-    public Boolean getIsExcursion() {
-        return this.isExcursion;
-    }
-
-    public Boolean getIsRelax() {
-        return this.isRelax;
-    }
-
-    public Boolean getIsShopping() {
-        return this.isShopping;
+        return priceFrom;
     }
 
     public void setPriceFrom(BigDecimal priceFrom) {
         this.priceFrom = priceFrom;
     }
 
+    public BigDecimal getPriceTo() {
+        return priceTo;
+    }
+
     public void setPriceTo(BigDecimal priceTo) {
         this.priceTo = priceTo;
+    }
+
+    public Integer getPersonsFrom() {
+        return personsFrom;
     }
 
     public void setPersonsFrom(Integer personsFrom) {
         this.personsFrom = personsFrom;
     }
 
+    public Integer getPersonsTo() {
+        return personsTo;
+    }
+
     public void setPersonsTo(Integer personsTo) {
         this.personsTo = personsTo;
     }
 
-    public void setIsExcursion(Boolean isExcursion) {
-        this.isExcursion = isExcursion;
+    public Boolean getHotFirst() {
+        return hotFirst;
     }
 
-    public void setIsRelax(Boolean isRelax) {
-        this.isRelax = isRelax;
+    public void setHotFirst(Boolean hotFirst) {
+        this.hotFirst = hotFirst;
     }
 
-    public void setIsShopping(Boolean isShopping) {
-        this.isShopping = isShopping;
+    public Boolean getIsExcursion() {
+        return isExcursion;
+    }
+
+    public void setIsExcursion(Boolean excursion) {
+        isExcursion = excursion;
+    }
+
+    public Boolean getIsRelax() {
+        return isRelax;
+    }
+
+    public void setIsRelax(Boolean relax) {
+        isRelax = relax;
+    }
+
+    public Boolean getIsShopping() {
+        return isShopping;
+    }
+
+    public void setIsShopping(Boolean shopping) {
+        isShopping = shopping;
     }
 }

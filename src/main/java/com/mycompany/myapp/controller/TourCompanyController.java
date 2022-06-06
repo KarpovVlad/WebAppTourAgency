@@ -41,13 +41,6 @@ public class TourCompanyController {
         this.companyService = companyService;
     }
 
-    /**
-     * {@code POST  /tour-companies} : Create a new tourCompany.
-     *
-     * @param companyRequest the tourCompany to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new tourCompany, or with status {@code 400 (Bad Request)} if the tourCompany has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PostMapping("/tour-companies")
     public ResponseEntity<NameDto> createTourCompany(@RequestBody NameDto companyRequest) throws URISyntaxException {
         log.debug("REST request to save TourCompany : {}", companyRequest);
@@ -58,15 +51,7 @@ public class TourCompanyController {
             .body(response);
     }
 
-    /**
-     * {@code PUT  /tour-companies/:id} : Updates an existing tourCompany.
-     *
-     * @param id             the id of the tourCompany to save.
-     * @param companyRequest the tourCompany to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated tourCompany,
-     * or with status {@code 400 (Bad Request)} if the tourCompany is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the tourCompany couldn't be updated.
-     */
+
     @PutMapping("/tour-companies/{id}")
     public ResponseEntity<NameDto> updateTourCompany(@PathVariable final Long id,
                                                      @RequestBody NameDto companyRequest) {
@@ -78,16 +63,6 @@ public class TourCompanyController {
             .body(response);
     }
 
-    /**
-     * {@code PATCH  /tour-companies/:id} : Partial updates given fields of an existing tourCompany, field will ignore if it is null
-     *
-     * @param id          the id of the tourCompany to save.
-     * @param tourCompany the tourCompany to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated tourCompany,
-     * or with status {@code 400 (Bad Request)} if the tourCompany is not valid,
-     * or with status {@code 404 (Not Found)} if the tourCompany is not found,
-     * or with status {@code 500 (Internal Server Error)} if the tourCompany couldn't be updated.
-     */
     @PatchMapping(value = "/tour-companies/{id}", consumes = {"application/json", "application/merge-patch+json"})
     public ResponseEntity<NameDto> partialUpdateTourCompany(@PathVariable final Long id,
                                                             @RequestBody NameDto tourCompany) {
@@ -99,35 +74,18 @@ public class TourCompanyController {
         );
     }
 
-    /**
-     * {@code GET  /tour-companies} : get all the tourCompanies.
-     *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tourCompanies in body.
-     */
     @GetMapping("/tour-companies")
     public List<NameDto> getAllTourCompanies() {
         log.debug("REST request to get all TourCompanies");
         return companyService.getAllNames();
     }
 
-    /**
-     * {@code GET  /tour-companies/:id} : get the "id" tourCompany.
-     *
-     * @param id the id of the tourCompany to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the tourCompany, or with status {@code 404 (Not Found)}.
-     */
     @GetMapping("/tour-companies/{id}")
     public NameDto getTourCompany(@PathVariable Long id) {
         log.debug("REST request to get TourCompany : {}", id);
         return companyService.getNameById(id);
     }
 
-    /**
-     * {@code DELETE  /tour-companies/:id} : delete the "id" tourCompany.
-     *
-     * @param id the id of the tourCompany to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
     @DeleteMapping("/tour-companies/{id}")
     public ResponseEntity<Void> deleteTourCompany(@PathVariable Long id) {
         log.debug("REST request to delete TourCompany : {}", id);

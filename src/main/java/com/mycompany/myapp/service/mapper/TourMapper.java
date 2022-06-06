@@ -21,7 +21,14 @@ public class TourMapper {
         this.categoryMapper = categoryMapper;
     }
 
-    public TourDto toDto (Tour tour) {
+    public NameDto toNameDto(Tour tour) {
+        if (Objects.isNull(tour)) {
+            return null;
+        }
+        return new NameDto(tour.getId(), tour.getName());
+    }
+
+    public TourDto toDto(Tour tour) {
         if (Objects.isNull(tour)) {
             return null;
         }

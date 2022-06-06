@@ -48,13 +48,6 @@ public class TourController {
         this.tourService = tourService;
     }
 
-    /**
-     * {@code POST  /tours} : Create a new tour.
-     *
-     * @param tour the tour to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new tour, or with status {@code 400 (Bad Request)} if the tour has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PostMapping("/tours")
     public ResponseEntity<Tour> createTour(@RequestBody Tour tour) throws URISyntaxException {
         log.debug("REST request to save Tour : {}", tour);
@@ -68,15 +61,6 @@ public class TourController {
             .body(result);
     }
 
-    /**
-     * {@code PUT  /tours/:id} : Updates an existing tour.
-     *
-     * @param id   the id of the tour to save.
-     * @param tour the tour to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated tour,
-     * or with status {@code 400 (Bad Request)} if the tour is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the tour couldn't be updated.
-     */
     @PutMapping("/tours/{id}")
     public ResponseEntity<Tour> updateTour(@PathVariable(value = "id", required = false) final Long id, @RequestBody Tour tour) {
         log.debug("REST request to update Tour : {}, {}", id, tour);
@@ -98,16 +82,6 @@ public class TourController {
             .body(result);
     }
 
-    /**
-     * {@code PATCH  /tours/:id} : Partial updates given fields of an existing tour, field will ignore if it is null
-     *
-     * @param id   the id of the tour to save.
-     * @param tour the tour to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated tour,
-     * or with status {@code 400 (Bad Request)} if the tour is not valid,
-     * or with status {@code 404 (Not Found)} if the tour is not found,
-     * or with status {@code 500 (Internal Server Error)} if the tour couldn't be updated.
-     */
     @PatchMapping(value = "/tours/{id}", consumes = {"application/json", "application/merge-patch+json"})
     public ResponseEntity<Tour> partialUpdateTour(@PathVariable final Long id, @RequestBody Tour tour) {
         log.debug("REST request to partial update Tour partially : {}, {}", id, tour);
@@ -157,11 +131,6 @@ public class TourController {
         );
     }
 
-    /**
-     * {@code GET  /tours} : get all the tours.
-     *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tours in body.
-     */
     @GetMapping(value = "/tours", consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<TourDto> getAllTours(@RequestBody(required = false) TourCriteria criteria) {
         log.debug("REST request to get all Tours: priceFrom");
@@ -171,25 +140,12 @@ public class TourController {
         return tourService.getAll(criteria);
     }
 
-    /**
-     * {@code GET  /tours/:id} : get the "id" tour.
-     *
-     * @param id the id of the tour to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the tour, or with status {@code 404 (Not Found)}.
-     */
     @GetMapping("/tours/{id}")
-    public ResponseEntity<Tour> getTour(@PathVariable Long id) {
+    public TourDto getTour(@PathVariable Long id) {
         log.debug("REST request to get Tour : {}", id);
-        Optional<Tour> tour = tourRepository.findById(id);
-        return ResponseUtil.wrapOrNotFound(tour);
+        return tourService.getDtoById(id);
     }
 
-    /**
-     * {@code DELETE  /tours/:id} : delete the "id" tour.
-     *
-     * @param id the id of the tour to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
     @DeleteMapping("/tours/{id}")
     public ResponseEntity<Void> deleteTour(@PathVariable Long id) {
         log.debug("REST request to delete Tour : {}", id);
