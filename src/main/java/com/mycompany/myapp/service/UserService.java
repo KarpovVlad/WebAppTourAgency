@@ -1,18 +1,14 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.config.Constants;
+import com.mycompany.myapp.domain.dto.AdminUserDto;
+import com.mycompany.myapp.domain.dto.UserDTO;
 import com.mycompany.myapp.domain.entity.Authority;
 import com.mycompany.myapp.domain.entity.User;
 import com.mycompany.myapp.repository.AuthorityRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
-import com.mycompany.myapp.domain.dto.AdminUserDto;
-import com.mycompany.myapp.domain.dto.UserDTO;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -23,6 +19,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tech.jhipster.security.RandomUtil;
+
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Service class for managing users.
@@ -309,11 +310,26 @@ public class UserService {
 
     /**
      * Gets a list of all the authorities.
+     *
      * @return a list of all the authorities.
      */
     @Transactional(readOnly = true)
     public List<String> getAuthorities() {
-        return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
+        return authorityRepository.findAll()
+            .stream()
+            .map(Authority::getName)
+            .collect(Collectors.toList());
+    }
+
+    public User getCurrentUser() {
+        String userLogin = SecurityUtils.getCurrentUserLogin()
+            .orElseThrow(() -> new RuntimeException("Unauthorized"));
+        return userRepository.findOneByLogin(userLogin)
+            .orElseThrow(() -> new RuntimeException("Unauthorized"));
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     private void clearUserCaches(User user) {

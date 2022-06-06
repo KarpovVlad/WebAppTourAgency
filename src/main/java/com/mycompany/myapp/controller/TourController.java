@@ -195,4 +195,10 @@ public class TourController {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    @PostMapping("/tours/{id}/book")
+    public void bookTour(@PathVariable Long id) {
+        log.debug("Booking tour with id: {}", id);
+        tourService.book(id);
+    }
 }

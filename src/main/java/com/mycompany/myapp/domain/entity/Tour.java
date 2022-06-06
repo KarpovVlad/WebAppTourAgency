@@ -1,13 +1,14 @@
 package com.mycompany.myapp.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * A Tour.
@@ -57,11 +58,11 @@ public class Tour implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "tours" }, allowSetters = true)
+    @JsonIgnoreProperties(value = {"tours"}, allowSetters = true)
     private Set<Category> categories = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "tours" }, allowSetters = true)
+    @JsonIgnoreProperties(value = {"tours"}, allowSetters = true)
     private TourCompany tourCompany;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -244,15 +245,15 @@ public class Tour implements Serializable {
     @Override
     public String toString() {
         return "Tour{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", image='" + getImage() + "'" +
-            ", imageContentType='" + getImageContentType() + "'" +
-            ", price=" + getPrice() +
-            ", persons=" + getPersons() +
-            ", hot='" + getHot() + "'" +
-            ", discoint=" + getDiscoint() +
-            "}";
+               "id=" + getId() +
+               ", name='" + getName() + "'" +
+               ", description='" + getDescription() + "'" +
+               ", image='" + getImage() + "'" +
+               ", imageContentType='" + getImageContentType() + "'" +
+               ", price=" + getPrice() +
+               ", persons=" + getPersons() +
+               ", hot='" + getHot() + "'" +
+               ", discoint=" + getDiscoint() +
+               "}";
     }
 }
