@@ -24,6 +24,9 @@ public class TourBookingMapper {
         TourBookingDto bookingDto = new TourBookingDto();
         bookingDto.setId(booking.getId());
         bookingDto.setStatus(booking.getStatus().name());
+        bookingDto.setCreatedAt(booking.getCreatedDate());
+        bookingDto.setLastModifiedAt(booking.getLastModifiedDate());
+        bookingDto.setLastModifiedBy(booking.getLastModifiedBy());
         bookingDto.setTour(tourMapper.toNameDto(booking.getTour()));
         bookingDto.setUser(userMapper.toNameDto(booking.getUser()));
         return bookingDto;

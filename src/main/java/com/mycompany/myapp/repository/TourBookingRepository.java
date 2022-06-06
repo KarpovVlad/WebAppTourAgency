@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TourBookingRepository extends JpaRepository<TourBooking, Long> {
 
@@ -15,4 +17,6 @@ public interface TourBookingRepository extends JpaRepository<TourBooking, Long> 
                    "and booking.tour.id = :tourId " +
                    "and booking.status = 'PENDING'")
     boolean isPendingBookingPresent(@Param("userId") Long userId, @Param("tourId") Long tourId);
+
+    List<TourBooking> findByUserId(Long userId);
 }

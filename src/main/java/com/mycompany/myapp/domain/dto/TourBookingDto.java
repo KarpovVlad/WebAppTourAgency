@@ -1,5 +1,7 @@
 package com.mycompany.myapp.domain.dto;
 
+import java.time.Instant;
+
 public class TourBookingDto {
 
     private Long id;
@@ -9,6 +11,36 @@ public class TourBookingDto {
     private NameDto user;
 
     private String status;
+
+    private Instant createdAt;
+
+    private Instant lastModifiedAt;
+
+    private String lastModifiedBy;
+
+    public Instant getLastModifiedAt() {
+        return lastModifiedAt;
+    }
+
+    public void setLastModifiedAt(Instant lastModifiedAt) {
+        this.lastModifiedAt = lastModifiedAt;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public Long getId() {
         return id;
