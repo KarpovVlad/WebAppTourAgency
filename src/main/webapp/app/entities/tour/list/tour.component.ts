@@ -22,10 +22,12 @@ export class TourComponent implements OnInit {
 
     this.tourService.query().subscribe({
       next: (res: HttpResponse<ITour[]>) => {
+
         this.isLoading = false;
         this.tours = res.body ?? [];
       },
-      error: () => {
+      error: (res) => {
+        console.log(res);
         this.isLoading = false;
       },
     });

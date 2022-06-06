@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
-import { isPresent } from 'app/core/util/operators';
-import { ApplicationConfigService } from 'app/core/config/application-config.service';
-import { createRequestOption } from 'app/core/request/request-util';
-import { ITour, getTourIdentifier } from '../tour.model';
+import {isPresent} from 'app/core/util/operators';
+import {ApplicationConfigService} from 'app/core/config/application-config.service';
+import {createRequestOption} from 'app/core/request/request-util';
+import {getTourIdentifier, ITour} from '../tour.model';
 
 export type EntityResponseType = HttpResponse<ITour>;
 export type EntityArrayResponseType = HttpResponse<ITour[]>;
@@ -34,7 +34,7 @@ export class TourService {
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<ITour[]>(this.resourceUrl, { params: options, observe: 'response' });
+    return this.http.get<ITour[]>(this.resourceUrl, {params: options, observe: 'response'});
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {

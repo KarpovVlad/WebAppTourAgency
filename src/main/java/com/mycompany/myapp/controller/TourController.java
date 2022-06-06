@@ -1,6 +1,7 @@
 package com.mycompany.myapp.controller;
 
 import com.mycompany.myapp.domain.dto.TourCriteria;
+import com.mycompany.myapp.domain.dto.TourDto;
 import com.mycompany.myapp.domain.entity.Tour;
 import com.mycompany.myapp.exceptions.BadRequestAlertException;
 import com.mycompany.myapp.repository.TourRepository;
@@ -162,8 +163,11 @@ public class TourController {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tours in body.
      */
     @GetMapping(value = "/tours", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Tour> getAllTours(@RequestBody TourCriteria criteria) {
+    public List<TourDto> getAllTours(@RequestBody(required = false) TourCriteria criteria) {
         log.debug("REST request to get all Tours: priceFrom");
+        if (Objects.isNull(criteria)) { // todo: remove then front send criteria object
+            criteria = new TourCriteria();
+        }
         return tourService.getAll(criteria);
     }
 

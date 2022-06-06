@@ -21,7 +21,7 @@ describe('TourCompany Service', () => {
 
     elemDefault = {
       id: 0,
-      tourCompanyName: 'AAAAAAA',
+      name: 'AAAAAAA',
     };
   });
 

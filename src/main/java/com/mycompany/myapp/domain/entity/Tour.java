@@ -1,6 +1,7 @@
 package com.mycompany.myapp.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.mycompany.myapp.domain.dto.TourDto;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -222,23 +224,25 @@ public class Tour implements Serializable {
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Tour)) {
-            return false;
-        }
-        return id != null && id.equals(((Tour) o).id);
-    }
-
     @Override
     public int hashCode() {
         // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Tour)) {
+            return false;
+        }
+        Tour otherTour = (Tour) other;
+        return Objects.equals(this.id, otherTour.id)
+               && Objects.equals(this.name, otherTour.name)
+               && Objects.equals(this.description, otherTour.description)
+               && Objects.equals(this.persons, otherTour.persons);
     }
 
     // prettier-ignore

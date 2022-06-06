@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface TourCustomRepository extends JpaRepository<Tour, Long> {
@@ -20,7 +21,8 @@ public interface TourCustomRepository extends JpaRepository<Tour, Long> {
                    "and (:#{#criteria.getPriceFrom} is null or tour.price >= :#{#criteria.getPriceFrom}) " +
                    "and (:#{#criteria.getPriceTo} is null or tour.price <= :#{#criteria.getPriceTo}) " +
                    "and (:#{#criteria.getPersonsFrom} is null or tour.persons >= :#{#criteria.getPersonsFrom}) " +
-                   "and (:#{#criteria.getPersonsTo} is null or tour.persons <= :#{#criteria.getPersonsTo}) ")
-    List<Tour> findByCriteria(@Param("criteria") TourCriteria criteria);
+                   "and (:#{#criteria.getPersonsTo} is null or tour.persons <= :#{#criteria.getPersonsTo}) " +
+                   "order by tour.name")
+    Set<Tour> findByCriteria(@Param("criteria") TourCriteria criteria);
 
 }

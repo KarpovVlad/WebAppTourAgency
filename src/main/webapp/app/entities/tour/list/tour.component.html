@@ -75,7 +75,7 @@
           </td>
           <td>
             <div *ngIf="tour.tourCompany">
-              <a [routerLink]="['/tour-company', tour.tourCompany?.id, 'view']">{{ tour.tourCompany?.tourCompanyName }}</a>
+              <a [routerLink]="['/tour-company', tour.tourCompany?.id, 'view']">{{ tour.tourCompany?.name }}</a>
             </div>
           </td>
           <td class="text-end">

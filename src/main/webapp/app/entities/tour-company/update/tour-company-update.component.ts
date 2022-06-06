@@ -17,7 +17,7 @@ export class TourCompanyUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    tourCompanyName: [],
+    name: [],
   });
 
   constructor(protected tourCompanyService: TourCompanyService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
@@ -64,7 +64,7 @@ export class TourCompanyUpdateComponent implements OnInit {
   protected updateForm(tourCompany: ITourCompany): void {
     this.editForm.patchValue({
       id: tourCompany.id,
-      tourCompanyName: tourCompany.tourCompanyName,
+      name: tourCompany.name,
     });
   }
 
@@ -72,7 +72,7 @@ export class TourCompanyUpdateComponent implements OnInit {
     return {
       ...new TourCompany(),
       id: this.editForm.get(['id'])!.value,
-      tourCompanyName: this.editForm.get(['tourCompanyName'])!.value,
+      name: this.editForm.get(['name'])!.value,
     };
   }
 }

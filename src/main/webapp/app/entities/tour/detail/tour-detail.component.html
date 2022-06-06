@@ -57,7 +57,7 @@
         <dt><span>Tour Company</span></dt>
         <dd>
           <div *ngIf="tour.tourCompany">
-            <a [routerLink]="['/tour-company', tour.tourCompany?.id, 'view']">{{ tour.tourCompany?.tourCompanyName }}</a>
+            <a [routerLink]="['/tour-company', tour.tourCompany?.id, 'view']">{{ tour.tourCompany?.name }}</a>
           </div>
         </dd>
       </dl>
