@@ -5,6 +5,7 @@ import com.mycompany.myapp.domain.dto.AdminUserDto;
 import com.mycompany.myapp.domain.dto.UserDTO;
 import com.mycompany.myapp.domain.entity.Authority;
 import com.mycompany.myapp.domain.entity.User;
+import com.mycompany.myapp.exceptions.UsernameAlreadyUsedException;
 import com.mycompany.myapp.repository.AuthorityRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;

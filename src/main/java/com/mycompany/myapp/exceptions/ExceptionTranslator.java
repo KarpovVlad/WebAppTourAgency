@@ -130,7 +130,7 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
 
     @ExceptionHandler
     public ResponseEntity<Problem> handleUsernameAlreadyUsedException(
-        com.mycompany.myapp.service.UsernameAlreadyUsedException ex,
+        UsernameAlreadyUsedException ex,
         NativeWebRequest request
     ) {
         LoginAlreadyUsedException problem = new LoginAlreadyUsedException();

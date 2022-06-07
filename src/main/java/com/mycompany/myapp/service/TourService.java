@@ -33,8 +33,7 @@ public class TourService {
     }
 
     public List<TourDto> getAll(TourCriteria criteria) {
-        Sort sorting = getSorting(criteria);
-        return tourRepository.findByCriteria(criteria, sorting)
+        return tourRepository.findByCriteria(criteria)
             .stream()
             .map(tourMapper::toDto)
             .collect(Collectors.toList());
@@ -49,12 +48,6 @@ public class TourService {
         return tourRepository.findById(id)
             .orElseThrow(() -> new BadRequestAlertException("Tour with id: " + id + " not found",
                 Tour.class.getSimpleName(), "idnotfound"));
-    }
-
-    private Sort getSorting(TourCriteria criteria) {
-        return Objects.nonNull(criteria.getHotFirst()) && criteria.getHotFirst()
-            ? Sort.by(Sort.Order.desc("hot"), Sort.Order.asc("name").ignoreCase())
-            : Sort.by(Sort.Order.asc("name").ignoreCase());
     }
 
 }

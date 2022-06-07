@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
@@ -157,6 +158,7 @@ public class TourController {
     }
 
     @PostMapping("/tours/{id}/book")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public void bookTour(@PathVariable Long id) {
         log.debug("Booking tour with id: {}", id);
         tourService.book(id);

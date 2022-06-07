@@ -12,16 +12,12 @@ public class TourCriteria {
 
     private Integer personsTo;
 
-    private Boolean hotFirst;
-
     // todo: replace booleans with Enum
     private Boolean isExcursion;
 
     private Boolean isRelax;
 
     private Boolean isShopping;
-
-
 
     public BigDecimal getPriceFrom() {
         return priceFrom;
@@ -53,14 +49,6 @@ public class TourCriteria {
 
     public void setPersonsTo(Integer personsTo) {
         this.personsTo = personsTo;
-    }
-
-    public Boolean getHotFirst() {
-        return hotFirst;
-    }
-
-    public void setHotFirst(Boolean hotFirst) {
-        this.hotFirst = hotFirst;
     }
 
     public Boolean getIsExcursion() {

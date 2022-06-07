@@ -42,6 +42,7 @@ public class TourBookingController {
     }
 
     @GetMapping("/personal")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
     public List<TourBookingDto> getPersonalBookings() {
         log.debug("Getting personal tour bookings");
         return bookingService.getPersonalBookings();

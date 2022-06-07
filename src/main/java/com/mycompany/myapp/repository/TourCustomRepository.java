@@ -2,13 +2,11 @@ package com.mycompany.myapp.repository;
 
 import com.mycompany.myapp.domain.dto.TourCriteria;
 import com.mycompany.myapp.domain.entity.Tour;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -22,7 +20,8 @@ public interface TourCustomRepository extends JpaRepository<Tour, Long> {
                    "and (:#{#criteria.getPriceFrom} is null or tour.price >= :#{#criteria.getPriceFrom}) " +
                    "and (:#{#criteria.getPriceTo} is null or tour.price <= :#{#criteria.getPriceTo}) " +
                    "and (:#{#criteria.getPersonsFrom} is null or tour.persons >= :#{#criteria.getPersonsFrom}) " +
-                   "and (:#{#criteria.getPersonsTo} is null or tour.persons <= :#{#criteria.getPersonsTo})")
-    Set<Tour> findByCriteria(@Param("criteria") TourCriteria criteria, Sort sort);
+                   "and (:#{#criteria.getPersonsTo} is null or tour.persons <= :#{#criteria.getPersonsTo}) " +
+                   "order by tour.hot desc, tour.name")
+    Set<Tour> findByCriteria(@Param("criteria") TourCriteria criteria);
 
 }
