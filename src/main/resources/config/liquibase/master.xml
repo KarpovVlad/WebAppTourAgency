@@ -20,5 +20,5 @@
     <include file="config/liquibase/changelog/20220601133020_added_entity_Tour.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220601133020_added_entity_constraints_Tour.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220606090000_mock_data.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220606195000_remove_user_tour_table_and_create_booking_table.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220606195000_create_booking_table.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
