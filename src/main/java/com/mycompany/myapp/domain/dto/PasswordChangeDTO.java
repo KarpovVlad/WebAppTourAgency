@@ -1,8 +1,5 @@
 package com.mycompany.myapp.domain.dto;
 
-/**
- * A DTO representing a password change required data - current and new password.
- */
 public class PasswordChangeDTO {
 
     private String currentPassword;

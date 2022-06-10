@@ -2,9 +2,6 @@ package com.mycompany.myapp.domain.dto;
 
 import com.mycompany.myapp.domain.entity.User;
 
-/**
- * A DTO representing a user, with only the public attributes.
- */
 public class UserDTO {
 
     private Long id;
@@ -12,12 +9,10 @@ public class UserDTO {
     private String login;
 
     public UserDTO() {
-        // Empty constructor needed for Jackson.
     }
 
     public UserDTO(User user) {
         this.id = user.getId();
-        // Customize it here if you need, or not, firstName/lastName/etc
         this.login = user.getLogin();
     }
 
@@ -37,7 +32,6 @@ public class UserDTO {
         this.login = login;
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "UserDTO{" +

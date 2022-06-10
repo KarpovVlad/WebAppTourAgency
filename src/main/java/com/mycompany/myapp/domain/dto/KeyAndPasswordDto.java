@@ -1,8 +1,5 @@
 package com.mycompany.myapp.domain.dto;
 
-/**
- * View Model object for storing the user's key and password.
- */
 public class KeyAndPasswordDto {
 
     private String key;

@@ -1,11 +1,8 @@
 package com.mycompany.myapp.domain.dto;
 
-import com.mycompany.myapp.domain.dto.AdminUserDto;
+
 import javax.validation.constraints.Size;
 
-/**
- * View Model extending the AdminUserDTO, which is meant to be used in the user management UI.
- */
 public class ManagedUserDto extends AdminUserDto {
 
     public static final int PASSWORD_MIN_LENGTH = 4;
@@ -16,7 +13,6 @@ public class ManagedUserDto extends AdminUserDto {
     private String password;
 
     public ManagedUserDto() {
-        // Empty constructor needed for Jackson.
     }
 
     public String getPassword() {
@@ -27,7 +23,6 @@ public class ManagedUserDto extends AdminUserDto {
         this.password = password;
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "ManagedUserVM{" + super.toString() + "} ";

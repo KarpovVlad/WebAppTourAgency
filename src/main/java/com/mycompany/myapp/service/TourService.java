@@ -6,11 +6,9 @@ import com.mycompany.myapp.domain.entity.Tour;
 import com.mycompany.myapp.exceptions.BadRequestAlertException;
 import com.mycompany.myapp.repository.TourCustomRepository;
 import com.mycompany.myapp.service.mapper.TourMapper;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service

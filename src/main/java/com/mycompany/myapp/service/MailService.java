@@ -16,12 +16,6 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import tech.jhipster.config.JHipsterProperties;
-
-/**
- * Service for sending emails.
- * <p>
- * We use the {@link Async} annotation to send emails asynchronously.
- */
 @Service
 public class MailService {
 

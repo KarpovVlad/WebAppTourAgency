@@ -1,8 +1,5 @@
 package com.mycompany.myapp.config;
 
-/**
- * Application constants.
- */
 public final class Constants {
 
     // Regex for acceptable logins

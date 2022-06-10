@@ -12,7 +12,6 @@ public class TourCriteria {
 
     private Integer personsTo;
 
-    // todo: replace booleans with Enum
     private Boolean isExcursion;
 
     private Boolean isRelax;

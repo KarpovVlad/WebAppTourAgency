@@ -1,6 +1,6 @@
 package com.mycompany.myapp.repository;
 
-import com.mycompany.myapp.domain.dto.TourCriteria;
+
 import com.mycompany.myapp.domain.entity.Tour;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,11 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-import java.util.Set;
 
-/**
- * Spring Data SQL repository for the Tour entity.
- */
 @Repository
 public interface TourRepository extends TourRepositoryWithBagRelationships, JpaRepository<Tour, Long> {
 

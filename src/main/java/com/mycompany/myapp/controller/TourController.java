@@ -23,9 +23,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * REST controller for managing {@link Tour}.
- */
 @RestController
 @RequestMapping("/api")
 @Transactional

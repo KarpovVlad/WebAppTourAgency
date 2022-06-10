@@ -3,9 +3,6 @@ package com.mycompany.myapp.domain.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * View Model object for storing a user's credentials.
- */
 public class LoginDto {
 
     @NotNull
@@ -42,7 +39,6 @@ public class LoginDto {
         this.rememberMe = rememberMe;
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "LoginVM{" +

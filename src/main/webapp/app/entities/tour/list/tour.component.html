@@ -69,13 +69,12 @@
           <td>{{ tour.discoint }}</td>
           <td>
             <span *ngFor="let category of tour.categories; let last = last">
-              <a class="form-control-static" [routerLink]="['/category', category.id, 'view']">{{ category.name }}</a
-              >{{ last ? '' : ', ' }}
+              {{ category.name }}
             </span>
           </td>
           <td>
             <div *ngIf="tour.tourCompany">
-              <a [routerLink]="['/tour-company', tour.tourCompany?.id, 'view']">{{ tour.tourCompany?.name }}</a>
+              {{ tour.tourCompany?.name }}
             </div>
           </td>
           <td class="text-end">

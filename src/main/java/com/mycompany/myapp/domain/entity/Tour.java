@@ -1,10 +1,8 @@
 package com.mycompany.myapp.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.mycompany.myapp.domain.dto.TourDto;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,9 +10,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-/**
- * A Tour.
- */
 @Entity
 @Table(name = "tour")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -66,8 +61,6 @@ public class Tour implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = {"tours"}, allowSetters = true)
     private TourCompany tourCompany;
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
         return this.id;
@@ -226,7 +219,6 @@ public class Tour implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -245,7 +237,6 @@ public class Tour implements Serializable {
                && Objects.equals(this.persons, otherTour.persons);
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "Tour{" +

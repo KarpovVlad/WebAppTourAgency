@@ -8,9 +8,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.constraints.*;
 
-/**
- * A DTO representing a user, with his authorities.
- */
 public class AdminUserDto {
 
     private Long id;
@@ -49,7 +46,6 @@ public class AdminUserDto {
     private Set<String> authorities;
 
     public AdminUserDto() {
-        // Empty constructor needed for Jackson.
     }
 
     public AdminUserDto(User user) {
@@ -172,7 +168,6 @@ public class AdminUserDto {
         this.authorities = authorities;
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "AdminUserDTO{" +

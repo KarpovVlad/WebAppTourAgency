@@ -1,7 +1,6 @@
 package com.mycompany.myapp.controller;
 
 import com.mycompany.myapp.domain.dto.NameDto;
-import com.mycompany.myapp.domain.entity.TourCompany;
 import com.mycompany.myapp.repository.TourCompanyRepository;
 import com.mycompany.myapp.service.TourCompanyService;
 import org.slf4j.Logger;
@@ -18,9 +17,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * REST controller for managing {@link TourCompany}.
- */
 @RestController
 @RequestMapping("/api")
 @Transactional

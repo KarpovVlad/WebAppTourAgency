@@ -9,11 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.hibernate.annotations.QueryHints;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.stereotype.Service;
 
-/**
- * Utility repository to load bag relationships based on https://vladmihalcea.com/hibernate-multiplebagfetchexception/
- */
 public class TourRepositoryWithBagRelationshipsImpl implements TourRepositoryWithBagRelationships {
 
     @PersistenceContext

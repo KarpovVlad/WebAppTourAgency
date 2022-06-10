@@ -21,7 +21,7 @@ public class TourDto {
 
     private Boolean hot;
 
-    private Integer discoint; // todo: fix typo
+    private Integer discoint;
 
     private NameDto tourCompany;
 
